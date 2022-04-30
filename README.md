@@ -16,8 +16,8 @@
 
 #### 前端样式库
 
-- vant 3 官方文档：https://vant-contrib.gitee.io/vant/#/zh-CN 
-- font awesome 官方文档：https://fa5.dashgame.com/#/
+- vant 3 官方文档：https://vant-contrib.gitee.io/vant/#/zh-CN
+- iconfont vant图标库 地址：https://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=31945
 
 #### 其他组件
 
