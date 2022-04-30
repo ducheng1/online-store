@@ -1,6 +1,9 @@
 <template>
     <div id="app">
-        <router-view/>
+        <van-nav-bar safe-area-inset-top title="在线商城"></van-nav-bar>
+        <div id="view">
+            <router-view/>
+        </div>
         <van-tabbar v-model="active" safe-area-inset-bottom>
             <van-tabbar-item icon="home-o">
                 <router-link to="/">主页</router-link>
@@ -31,10 +34,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     text-align: center;
-    color: #2c3e50;
+}
+
+#view {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 </style>
