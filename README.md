@@ -56,17 +56,14 @@
 
 ### 项目初始化与导入
 
-1. vant 3安装
-
     ```shell
-    npm i vant --save
+    npm i
     ```
 
-2. font awesome安装
-
     ```shell
-    npm install --save-dev @fortawesome/fontawesome-free
+    npm i -g
     ```
+
 
 ### 项目模块
 
