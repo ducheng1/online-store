@@ -56,5 +56,29 @@ export default {
 }
 
 /*切换动画*/
+.fade-enter-active {
+    opacity: 0;
+    transition: opacity .25s;
+}
 
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-to {
+    opacity: 1;
+}
+
+.fade-leave {
+    opacity: 1;
+}
+
+.fade-leave-active {
+    opacity: 0;
+    transition: opacity .25s;
+}
+
+.fade-leave-to {
+    opacity: 0;
+}
 </style>

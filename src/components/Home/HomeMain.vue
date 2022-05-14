@@ -50,8 +50,8 @@ export default {
         }
     },
     methods: {
-        jumpTo: function () {
-
+        jumpTo: function (index) {
+            console.log(index);
         }
     },
 }
