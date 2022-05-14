@@ -1,10 +1,15 @@
 <template>
     <div id="app">
         <van-nav-bar safe-area-inset-top title="在线商城"></van-nav-bar>
+        <van-notice-bar left-icon="volume-o" text="促销中！"/>
         <div id="view">
-            <router-view/>
+            <router-view v-slot="{Component}">
+                <transition name="fade" mode="out-in">
+                    <component :is="Component"></component>
+                </transition>
+            </router-view>
         </div>
-        <van-tabbar v-model="active" safe-area-inset-bottom>
+        <van-tabbar v-model="active" safe-area-inset-bottom route>
             <van-tabbar-item icon="home-o">
                 <router-link to="/">主页</router-link>
             </van-tabbar-item>
@@ -28,13 +33,18 @@ export default {
     setup() {
         const active = ref(0);
         return {
-            active
+            active,
         };
     },
 }
 </script>
 
 <style scoped>
+* {
+    margin: 0;
+    padding: 0;
+}
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     text-align: center;
@@ -44,4 +54,7 @@ export default {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+/*切换动画*/
+
 </style>
