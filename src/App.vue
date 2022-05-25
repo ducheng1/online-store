@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <van-nav-bar safe-area-inset-top title="在线商城"></van-nav-bar>
+        <van-nav-bar safe-area-inset-top title="在线商城" fixed></van-nav-bar>
         <van-notice-bar left-icon="volume-o" text="促销中！"/>
         <div id="view">
             <router-view v-slot="{Component}">
