@@ -1,7 +1,7 @@
 <template>
     <div id="container">
         <div class="goodsContainer">
-            <div v-for="(item,index) in goods" @click="jumpTo(index)" :key="index" class="goodsItem">
+            <div v-for="item in goods" @click="jumpTo(item.id)" :key="item.id" class="goodsItem">
                 <img :src="item.url" :alt="item.title" class="goodsImg"/>
                 <div class="goodsTitle">{{ item.title }}</div>
                 <div class="goodsPrice">￥{{ item.price }}</div>
@@ -11,9 +11,21 @@
     </div>
 </template>
 <script>
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 export default {
     name: "HomeMain",
-    data() {
+    setup(){
+        const store = useStore();
+        let goods=store.state.goods;
+        const router = useRouter();
+        function jumpTo(id) {
+            console.log(id);
+             router.push({path:'/detail',query:{id}})
+        }
+        return {goods,jumpTo};
+    },
+    /* data() {
         return {
             goods: [
                 {
@@ -49,11 +61,12 @@ export default {
             ]
         }
     },
+    
     methods: {
-        jumpTo: function (index) {
-            console.log(index);
+        jumpTo: function (id) {
+            console.log(id);
         }
-    },
+    }, */
 }
 </script>
 <style scoped>
