@@ -39,11 +39,17 @@ export default createStore({
           title: "Royal Leaf - Tiesta Tea",
           price: "345"
       },
-  ]
+      
+  ],
+  opt:[],
   },
   getters: {
   },
   mutations: {
+      add(state,id){
+          state.opt.unshift(id);
+          console.log(id,state.opt)
+      }
   },
   actions: {
   },
