@@ -26,7 +26,7 @@
                 <van-button round block type="info" native-type="submit" @click="onSubmit">登录</van-button>
             </div>
             <div class="reg">
-                <div @click="toRegister">立即注册</div>
+                <div @click="toRegister">立即注册！！！</div>
             </div>
         </van-form>
     </div>

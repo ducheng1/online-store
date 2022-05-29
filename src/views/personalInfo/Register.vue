@@ -4,7 +4,7 @@
             <van-icon size="25" name="arrow-left" />
         </div>
         <div>
-            <p>注册</p>
+            <p>注册！！！</p>
         </div>
         <van-form>
             <van-cell-group>
