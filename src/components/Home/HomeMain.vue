@@ -20,7 +20,7 @@ export default {
         let goods=store.state.goods;
         const router = useRouter();
         function jumpTo(id) {
-            console.log(id);
+            //console.log(id);
              router.push({path:'/detail',query:{id}})
         }
         return {goods,jumpTo};
