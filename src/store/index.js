@@ -40,18 +40,26 @@ export default createStore({
           price: 345
       },
       
-  ],
-  opt:[],
+    ],
+    shoppingCarts:[],//存放要添加到购物车页的商品的id
+    collections:[]//存放要添加到收藏页的商品的id
   },
   getters: {
   },
   mutations: {
-      add(state,id){
-          state.opt.unshift(id);
-          console.log(id,state.opt)
+      /* 添加到购物车方法 */
+      addToCarts(state,goodId){
+        state.shoppingCarts.unshift(goodId);
+        //console.log(goodId,state.opt)
+      },
+
+      /* 添加到收藏页方法 */
+      addToStars(state,goodId){
+        state.collections.unshift(goodId);
+        //console.log(goodId,state.collection)
       },
       del(state,goodId){
-        state.opt.splice(state.opt.indexOf(goodId),1);
+        state.shoppingCarts.splice(state.shoppingCarts.indexOf(goodId),1);
       } 
   },
   actions: {

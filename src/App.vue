@@ -1,6 +1,10 @@
 <template>
     <div id="app">
-        <van-nav-bar safe-area-inset-top title="在线商城" fixed></van-nav-bar>
+        <van-nav-bar safe-area-inset-top title="在线商城" fixed>
+            <template #right v-if="currentRoute=='/stars'">
+                <span @click="manageStars">管理</span>
+            </template>
+        </van-nav-bar>
         <van-notice-bar left-icon="volume-o" text="促销中！"/>
         <div id="view">
             <router-view v-slot="{Component}">
@@ -17,7 +21,7 @@
                 <router-link to="/carts">购物车</router-link>
             </van-tabbar-item>
             <van-tabbar-item icon="like-o">
-                <router-link to="/stars">收藏</router-link>
+                <router-link to="/stars" :isManage="isManage">收藏</router-link>
             </van-tabbar-item>
             <van-tabbar-item icon="user-o">
                 <router-link to="/my">我的</router-link>
@@ -27,14 +31,24 @@
 </template>
 
 <script>
-import {ref} from '@vue/reactivity'
-
+import {ref,computed} from '@vue/reactivity'
+import { useRouter } from 'vue-router'
 export default {
     setup() {
         const active = ref(0);
-        return {
-            active,
-        };
+
+        /* 根据路由名是否等于'stars'显示收藏页是否显示管理 */
+        const router = useRouter();
+        let currentRoute=ref();
+        //console.log(router.currentRoute.value.path);
+        currentRoute=computed(()=>{        
+            return router.currentRoute.value.path;
+        })
+        let isManage=ref(false);
+        function manageStars(){
+            isManage=!isManage;
+        }
+        return {active,currentRoute,isManage,manageStars,}
     },
 }
 </script>

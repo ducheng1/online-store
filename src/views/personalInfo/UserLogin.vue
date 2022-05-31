@@ -9,7 +9,7 @@
         />
         <van-form>
             <van-field
-                v-model="userrname"
+                v-model="username"
                 name="用户名"
                 label="用户名"
                 placeholder="用户名"

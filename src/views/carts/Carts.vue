@@ -34,10 +34,10 @@ export default {
         const store = useStore();
         let goods = store.state.goods;
         console.log(goods)
-        let opt = store.state.opt;//获取商品详情传入的要加入购物车的id
+        let shoppingCarts = store.state.shoppingCarts;//获取商品详情页传入的要加入购物车的商品的id
         let cartsGood = reactive([]);
         goods.forEach(g => {
-        opt.forEach(o => {
+        shoppingCarts.forEach(o => {
           if(o==g.id){
             cartsGood.unshift(g);
             console.log(cartsGood)
@@ -56,7 +56,7 @@ export default {
           store.commit("del",goodId)          
           cartsGood.splice(cartsGood.indexOf(g,1))
           // console.log(cartsGood);
-          // console.log(store.state.opt);
+          // console.log(store.state.shoppingCarts);
         }
         });
       }
@@ -64,7 +64,7 @@ export default {
       function onSubmit(){
       if(totalPrice.value!=0){
         Toast('购买成功');
-        //console.log(opt)
+        //console.log(shoppingCarts)
         //store.commit('onSubmit',choose);
       }
       else 
