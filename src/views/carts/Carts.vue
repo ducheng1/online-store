@@ -1,7 +1,7 @@
 <template>
     <div id="container">
       <div v-show="cartsGood.length==0" class="nogood">
-        <!-- <img src="@/assets/购物车空空的.jpg"/><gr/> -->
+        <!-- <img src="@/assets/购物车空空的.jpg"/><br/> -->
         <span>购物车为空</span><br/>
         <input type="button" value="去添加商品" @click="toHome">  
       </div>
@@ -23,19 +23,20 @@
     </div>
 </template>
 <script>
-import {reactive,ref,computed} from 'vue'
-import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
-import { Toast } from 'vant'
+import {computed, reactive, ref} from 'vue'
+import {useStore} from 'vuex'
+import {useRouter} from 'vue-router'
+import {Toast} from 'vant'
+
 export default {
     name: "CartsPage",
-    setup(){
-      const store = useStore();
-      let goods=store.state.goods;
-      console.log(goods)
-      let opt=store.state.opt;//获取商品详情传入的要加入购物车的id
-      let cartsGood=reactive([]);
-      goods.forEach(g => {
+    setup() {
+        const store = useStore();
+        let goods = store.state.goods;
+        console.log(goods)
+        let opt = store.state.opt;//获取商品详情传入的要加入购物车的id
+        let cartsGood = reactive([]);
+        goods.forEach(g => {
         opt.forEach(o => {
           if(o==g.id){
             cartsGood.unshift(g);

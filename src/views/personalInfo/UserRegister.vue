@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="icon-back" @click="tologin">
-            <van-icon size="25" name="arrow-left" />
+            <van-icon size="25" name="arrow-left"/>
         </div>
         <div>
             <p>注册！！！</p>
@@ -58,54 +58,54 @@
 </template>
 
 <script>
-    import { Toast } from "vant";
-    export default{
-        data(){
-            return{
-                phone:'',
-                password:'',
-                password1:'',
-                value:'',
-                columns:["瓯江","鹿城","洞头","滨海"],
-                showPicker:false,
-            };
+import {Toast} from "vant";
+
+export default {
+    name: 'UserRegister',
+    data() {
+        return {
+            phone: '',
+            password: '',
+            password1: '',
+            value: '',
+            columns: ["瓯江", "鹿城", "洞头", "滨海"],
+            showPicker: false,
+        };
+    },
+    methods: {
+        onConfirm(value) {
+            this.value = value;
+            this.showPicker = false;
         },
-        methods:{
-            onConfirm(value){
-                this.value=value;
-                this.showPicker=false;
-            },
-            tologin(){
-                this.$router.go(-1);
-            },
-            onsubmit(){
-                if(this.phone==""||this.password==""||this.password1==""){
-                    Toast('请完善信息');
-                }
-                else if(this.password!=this.password1){
-                    Toast('两次密码不一致');
-                }
-                else{
-                    Toast('注册成功');
-                    this.$notify({
-                        type:"success",
-                        message:"注册成功，返回登录",
-                        duration:3000,
-                    });
-                    setTimeout(()=>{
-                        sessionStorage.clear("regis");
-                        this.$router.go(-1);
-                    },3000);
-                }
+        tologin() {
+            this.$router.go(-1);
+        },
+        onsubmit() {
+            if (this.phone == "" || this.password == "" || this.password1 == "") {
+                Toast('请完善信息');
+            } else if (this.password != this.password1) {
+                Toast('两次密码不一致');
+            } else {
+                Toast('注册成功');
+                this.$notify({
+                    type: "success",
+                    message: "注册成功，返回登录",
+                    duration: 3000,
+                });
+                setTimeout(() => {
+                    sessionStorage.clear("regis");
+                    this.$router.go(-1);
+                }, 3000);
             }
-        },
-    };
+        }
+    },
+};
 </script>
 
 <style scoped>
-    .icon-back{
-        position: absolute;
-        left: 2px;
-        top: 15px;
-    }
+.icon-back {
+    position: absolute;
+    left: 2px;
+    top: 15px;
+}
 </style>

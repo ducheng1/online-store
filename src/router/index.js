@@ -13,8 +13,17 @@ const routes = [
     },
     {
         path: '/my',
-        name: 'PersonalInfo',
-        component: () => import("@/views/personalInfo/PersonalInfo.vue")
+        redirect: '/login'
+    },
+    {
+        path: '/login',
+        name: 'userLogin',
+        component: () => import("@/views/personalInfo/UserLogin.vue")
+    },
+    {
+        path: '/register',
+        name: 'userRegister',
+        component: () => import("@/views/personalInfo/UserRegister.vue")
     },
     {
         path: '/stars',

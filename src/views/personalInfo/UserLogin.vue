@@ -32,19 +32,20 @@
     </div>
 </template>
 <script>
-    import { Toast } from 'vant';
-    export default{
-        name:"Login",
-        date(){
-            return{
-                username:'',
-                password:'',
-            };
-        },
-        methods:{
-            onSubmit(){
-                if(this.username=="123456"&&this.password=="123456"){
-                    Toast.success('登录成功');
+import {Toast} from 'vant';
+
+export default {
+    name: "UserLogin",
+    date() {
+        return {
+            username: '',
+            password: '',
+        };
+    },
+    methods: {
+        onSubmit() {
+            if (this.username == "123456" && this.password == "123456") {
+                Toast.success('登录成功');
                 }
                 else if(this.username==""&&this.password==""){
                     Toast('请输入账号或密码');
