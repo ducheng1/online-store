@@ -83,6 +83,8 @@ export default createStore({
       },
       loginSuccess(state){
         state.login = true;
+      },cancelLogin(state){
+        state.login = false;
       },
       /* 购买商品 */
       onSubmit(state,choose){

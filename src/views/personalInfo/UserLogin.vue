@@ -35,6 +35,9 @@
     </div>
     <div v-else>
         你已经登录成功.
+        <van-button @click="cancelLogin()">
+            退出登录
+        </van-button>
     </div>
     </div>
 </template>
@@ -45,7 +48,7 @@ export default {
     mounted:function(){
         this.checkLogin();
         if(this.login){
-             this.loginSuccess();
+             // this.loginSuccess();
         }
     },
     data() {
@@ -76,6 +79,9 @@ export default {
                                 Toast.success('我是杜晓斌，是兄弟就来和我一起购物');
                 this.$router.push('/');
 
+            },cancelLogin(){
+                this.$store.commit('cancelLogin');
+                this.login = this.$store.state.login;
             }
     }
     
