@@ -1,5 +1,6 @@
 <template>
-    <div>
+<div>
+    <div v-if="!login">
         <p class="title">登录</p>
         <van-image
                 round
@@ -32,23 +33,34 @@
             </div>
         </van-form>
     </div>
+    <div v-else>
+        你已经登录成功.
+    </div>
+    </div>
 </template>
 <script>
 import {Toast} from 'vant';
 export default {
     name: "UserLogin",
+    mounted:function(){
+        this.checkLogin();
+        if(this.login){
+             this.loginSuccess();
+        }
+    },
     data() {
         return {
             username: '',
             password: '',
+            login:false,
         };
     },
     methods: {
         onSubmit() {
             if (this.username == "123456" && this.password == "123456") {
-                Toast.success('我是杜晓斌，我是Sb');
-                this.$router.push('/');
-                }
+                this.$store.commit('loginSuccess');
+                this.loginSuccess();
+            }
                 else if(this.username==""&&this.password==""){
                     Toast('请输入账号或密码');
                 }
@@ -58,9 +70,16 @@ export default {
             },
             toRegister(){
                 this.$router.push('/Register')
+            },checkLogin(){
+                this.login = this.$store.state.login;
+            },loginSuccess(){
+                                Toast.success('我是杜晓斌，我是Sb');
+                this.$router.push('/');
+
             }
-        }
     }
+    
+}
 </script>
 <style scoped>
     .title{

@@ -2,6 +2,7 @@ import {createStore} from 'vuex'
 
 export default createStore({
   state: {
+    login:false,
     goods: [
       {
           id:1,
@@ -80,7 +81,9 @@ export default createStore({
       clearStars(state){
         state.collections.splice(0);
       },
-
+      loginSuccess(state){
+        state.login = true;
+      },
       /* 购买商品 */
       onSubmit(state,choose){
         state.shoppingCarts.forEach(s => {
