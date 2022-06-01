@@ -85,7 +85,7 @@ export default createStore({
       onSubmit(state,choose){
         state.shoppingCarts.forEach(s => {
           choose.forEach(c => {
-            if(s.id==c.id){
+            if(s==c){
               state.shoppingCarts.splice(state.shoppingCarts.indexOf(s),1)
             }
           });
