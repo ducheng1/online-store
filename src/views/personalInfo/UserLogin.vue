@@ -10,16 +10,18 @@
         <van-form>
             <van-field
                 v-model="username"
-                name="用户名"
+                name="username"
                 label="用户名"
                 placeholder="用户名"
+                type="text"
                 :rules="[{ required: true, message:'请填写用户名'}]"
             />
             <van-field
                 v-model="password"
-                name="密码"
+                name="password"
                 label="密码"
                 placeholder="密码"
+                type="text"
                 :rules="[{ required: true, message:'请填写密码'}]"
             />
             <div style="margin:16px;">
@@ -33,10 +35,9 @@
 </template>
 <script>
 import {Toast} from 'vant';
-
 export default {
     name: "UserLogin",
-    date() {
+    data() {
         return {
             username: '',
             password: '',
@@ -45,7 +46,8 @@ export default {
     methods: {
         onSubmit() {
             if (this.username == "123456" && this.password == "123456") {
-                Toast.success('登录成功');
+                Toast.success('我是杜晓斌，我是Sb');
+                this.$router.push('/');
                 }
                 else if(this.username==""&&this.password==""){
                     Toast('请输入账号或密码');
