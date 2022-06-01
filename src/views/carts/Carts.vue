@@ -52,21 +52,29 @@ export default {
 
       /* 单击删除按钮不再购买该书 */
       function delGood(goodId){
+        choose.splice(choose.indexOf(goodId),1);
         cartsGoods.forEach(g => {
-        if(g.id==goodId){
-          store.commit("delFromCarts",goodId)          
-          cartsGoods.splice(cartsGoods.indexOf(g,1))
-          // console.log(cartsGoods);
-          // console.log(store.state.shoppingCarts);
-        }
+          if(g.id==goodId){
+            store.commit("delFromCarts",goodId);      
+            cartsGoods.splice(cartsGoods.indexOf(g,1),1);
+            // console.log(cartsGoods);
+            // console.log(store.state.shoppingCarts);
+          }
         });
       }
 
       /* 提交订单 */
-      function onSubmit(){
+      function onSubmit(){      
         if(totalPrice.value!=0){
-          store.commit("onSubmit");
-          cartsGoods.splice(0);
+          store.commit("onSubmit",choose);
+          cartsGoods.forEach(good => {
+            choose.forEach(c => {
+            if(good.id==c){
+              cartsGoods.splice(cartsGoods.indexOf(good),1)
+            }
+          });
+        });
+          choose.splice(0);
           Toast('购买成功');
           //store.commit('onSubmit',choose);
         }
@@ -79,7 +87,7 @@ export default {
     function onChange(goodId){
       if(choose.indexOf(goodId)==-1){
         choose.unshift(goodId);
-        console.log(choose);
+        console.log(choose,"choose");
       }
       else {
         choose.splice(choose.indexOf(goodId),1);

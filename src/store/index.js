@@ -82,8 +82,14 @@ export default createStore({
       },
 
       /* 购买商品 */
-      onSubmit(state){
-        state.shoppingCarts.splice(0);
+      onSubmit(state,choose){
+        state.shoppingCarts.forEach(s => {
+          choose.forEach(c => {
+            if(s.id==c.id){
+              state.shoppingCarts.splice(state.shoppingCarts.indexOf(s),1)
+            }
+          });
+        });
       },
 
       //从收藏页中删除
