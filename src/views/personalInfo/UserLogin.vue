@@ -73,7 +73,7 @@ export default {
             },checkLogin(){
                 this.login = this.$store.state.login;
             },loginSuccess(){
-                                Toast.success('我是杜晓斌，我是Sb');
+                                Toast.success('我是杜晓斌，是兄弟就来和我一起购物');
                 this.$router.push('/');
 
             }
