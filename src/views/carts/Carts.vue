@@ -1,11 +1,10 @@
 <template>
     <div id="container">
-      <div v-show="cartsGood.length==0" class="nogood">
-        <!-- <img src="@/assets/购物车空空的.jpg"/><br/> -->
-        <span>购物车为空</span><br/>
+      <div v-show="cartsGoods.length==0" class="nogood">
+        <img src="@/assets/购物车为空.jpg"/><br/>
         <input type="button" value="去添加商品" @click="toHome">  
       </div>
-      <van-card v-for="g in cartsGood" :key="g.id"
+      <van-card v-for="g in cartsGoods" :key="g.id"
         :price="g.price"
         :title="g.title"
         class="goods-card"
@@ -35,40 +34,44 @@ export default {
         let goods = store.state.goods;
         console.log(goods)
         let shoppingCarts = store.state.shoppingCarts;//获取商品详情页传入的要加入购物车的商品的id
-        let cartsGood = reactive([]);
+        let cartsGoods = reactive([]);
         goods.forEach(g => {
         shoppingCarts.forEach(o => {
           if(o==g.id){
-            cartsGood.unshift(g);
-            console.log(cartsGood)
+            cartsGoods.unshift(g);
+            console.log(cartsGoods)
           }
         });
       });
+
       /* 单击按钮跳转到Home上 */
       const router = useRouter()
       function toHome(){
         router.push('/')
       }
+
       /* 单击删除按钮不再购买该书 */
       function delGood(goodId){
-        cartsGood.forEach(g => {
+        cartsGoods.forEach(g => {
         if(g.id==goodId){
-          store.commit("del",goodId)          
-          cartsGood.splice(cartsGood.indexOf(g,1))
-          // console.log(cartsGood);
+          store.commit("delFromCarts",goodId)          
+          cartsGoods.splice(cartsGoods.indexOf(g,1))
+          // console.log(cartsGoods);
           // console.log(store.state.shoppingCarts);
         }
         });
       }
+
       /* 提交订单 */
       function onSubmit(){
-      if(totalPrice.value!=0){
-        Toast('购买成功');
-        //console.log(shoppingCarts)
-        //store.commit('onSubmit',choose);
-      }
-      else 
-        Toast('未选择');
+        if(totalPrice.value!=0){
+          store.commit("onSubmit");
+          cartsGoods.splice(0);
+          Toast('购买成功');
+          //store.commit('onSubmit',choose);
+        }
+        else 
+          Toast('未选择或未添加商品');
     }
     
     /* 选择商品 */
@@ -82,12 +85,13 @@ export default {
         choose.splice(choose.indexOf(goodId),1);
       }
     }
+
     /* 计算总价 */
     let totalPrice=ref();
     totalPrice=computed(()=>{
       var price=0;
       for (let index = 0; index < choose.length; index++) {
-        cartsGood.forEach(g => {
+        cartsGoods.forEach(g => {
           if(g.id==choose[index]){
             price += g.price;
           }
@@ -96,7 +100,7 @@ export default {
       return price*100;       
     })
 
-    return {cartsGood,totalPrice,toHome,delGood,onSubmit,onChange}
+    return {cartsGoods,totalPrice,toHome,delGood,onSubmit,onChange}
   }
 }
 </script>
@@ -104,7 +108,6 @@ export default {
   .goods-card {
     text-align: left;
     margin: 0px;
-    background-color: white;
   }
   .nogood{ 
     background-color:WhiteSmoke;
@@ -130,6 +133,8 @@ export default {
     height: 50px;
   }
   .delbtn{ 
+    background-color:Orange;
     margin-right:20px;
+    border:1px solid Orange;
   }
 </style>

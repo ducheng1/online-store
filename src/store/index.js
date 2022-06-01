@@ -55,7 +55,8 @@ export default createStore({
   mutations: {
       /* 添加到购物车方法 */
       addToCarts(state,goodId){
-        state.shoppingCarts.unshift(goodId);
+        if(state.shoppingCarts.indexOf(goodId)==-1)
+          state.shoppingCarts.unshift(goodId);
         //console.log(goodId,state.opt)
       },
 
@@ -64,9 +65,27 @@ export default createStore({
         state.collections.unshift(goodId);
         //console.log(goodId,state.collection)
       },
-      del(state,goodId){
+
+      /* 删除收藏页的商品 */
+      delFromStars(state,goodId){
+        state.collections.splice(state.collections.indexOf(goodId),1);
+      },
+
+      /* 删除购物车的商品 */
+      delFromCarts(state,goodId){
         state.shoppingCarts.splice(state.shoppingCarts.indexOf(goodId),1);
       },
+
+      /* 清空收藏页 */
+      clearStars(state){
+        state.collections.splice(0);
+      },
+
+      /* 购买商品 */
+      onSubmit(state){
+        state.shoppingCarts.splice(0);
+      },
+
       //从收藏页中删除
       delToStars(state,goodId){
         state.collections.splice(state.collections.indexOf(goodId),1);
