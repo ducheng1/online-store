@@ -6,10 +6,8 @@
       >
     </div>
     <div id="detail">
-      <div id="detail-left">
-        <div id="pic">
-          <img v-bind:src="good.url" />
-        </div>
+      <div id="pic">
+        <img v-bind:src="good.url" />
       </div>
       <div id="detail-right">
         <div id="detail-title">
@@ -31,7 +29,7 @@
         <van-action-bar-icon icon="chat-o" text="客服" color="#ee0a24" />
         <van-action-bar-icon icon="cart-o" text="购物车" @click="gocarts" />
         <van-action-bar-icon
-          icon="star"
+          icon="star-o"
           id="addToStar"
           text="未收藏"
           @click="addStar"
@@ -80,13 +78,12 @@ export default {
 
     //添加到购物车
     function addCart() {
-      var beginadd=store.state.shoppingCarts.length;
-      store.commit("addToCarts", id) ;
-      var afteradd=store.state.shoppingCarts.length;
-      if(beginadd<afteradd){
+      var beginadd = store.state.shoppingCarts.length;
+      store.commit("addToCarts", id);
+      var afteradd = store.state.shoppingCarts.length;
+      if (beginadd < afteradd) {
         Toast("添加成功");
-      }
-      else{
+      } else {
         Toast("已在购物车中");
       }
     }
@@ -157,28 +154,22 @@ export default {
 };
 </script>
 <style scope>
-#container{
+#container {
   display: block;
   flex-direction: column;
 }
-#detail{
+#detail {
   display: block;
-  
+
   align-items: center;
 }
-#detail-left{
+#detail-right {
   display: block;
 }
-#detail-right{
-  display: block;
-}
-#pic{
-  height: 300px;
-  width: 375px;
-}
+
 img {
   width: 100%;
-  height: 100%;
+  height: 300px;
 }
 .van-action-bar {
   bottom: 50px;
