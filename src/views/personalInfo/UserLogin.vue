@@ -59,7 +59,7 @@ export default {
         onSubmit() {
             if (this.username == "123456" && this.password == "123456") {
                 this.$store.commit('loginSuccess');
-                this.loginSuccess();g
+                this.loginSuccess();
             }
                 else if(this.username==""&&this.password==""){
                     Toast('请输入账号或密码');
@@ -73,7 +73,7 @@ export default {
             },checkLogin(){
                 this.login = this.$store.state.login;
             },loginSuccess(){
-                                Toast.success('我是杜晓斌，是兄弟就来和我一起购物');
+                                Toast.success('我是杜晓斌，我是Sb');
                 this.$router.push('/');
 
             }
