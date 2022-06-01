@@ -80,7 +80,15 @@ export default {
 
     //添加到购物车
     function addCart() {
-      store.commit("addToCarts", id);
+      var beginadd=store.state.shoppingCarts.length;
+      store.commit("addToCarts", id) ;
+      var afteradd=store.state.shoppingCarts.length;
+      if(beginadd<afteradd){
+        Toast("添加成功");
+      }
+      else{
+        Toast("已在购物车中");
+      }
     }
     //添加到收藏页
     function addStar() {
@@ -142,16 +150,35 @@ export default {
     home() {
       this.$router.push({ name: "home" });
     },
-       gocarts() {
+    gocarts() {
       this.$router.push({ name: "Carts" });
     },
   },
 };
 </script>
 <style scope>
+#container{
+  display: block;
+  flex-direction: column;
+}
+#detail{
+  display: block;
+  
+  align-items: center;
+}
+#detail-left{
+  display: block;
+}
+#detail-right{
+  display: block;
+}
+#pic{
+  height: 300px;
+  width: 375px;
+}
 img {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .van-action-bar {
   bottom: 50px;
@@ -176,14 +203,13 @@ img {
   height: 8vh;
   background-color: blue;
   width: 100%;
-  display: table;
+  display: block;
 }
 #price {
   color: white;
   float: left;
-  display: table-cell;
+  display: block;
   text-align: center;
-  vertical-align: middle;
   padding-top: 2vh;
   padding-left: 3vh;
 }
