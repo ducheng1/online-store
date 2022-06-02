@@ -1,213 +1,239 @@
 <template>
-  <div id="container">
-    <div id="goHome">
-      <van-button type="primary" size="small" id="goHomebutton" @click="home"
-        >返回首页</van-button
-      >
-    </div>
-    <div id="detail">
-      <div id="pic">
-        <img v-bind:src="good.url" />
-      </div>
-      <div id="detail-right">
-        <div id="detail-title">
-          {{ good.title }}
+    <div class="container">
+        <van-nav-bar :title="good.title" left-arrow left-text="返回" @click-left="$router.push('/')" fixed right-text="收藏"
+                     @click-right="$router.push('/stars')"
+                     safe-area-inset-top></van-nav-bar>
+        <div id="detail">
+            <van-image v-bind:src="good.url"/>
+            <van-row id="detail-price">
+                <van-col id="price" :span="12">
+                    价格：¥
+                    <span style="font-size: 1.5rem">{{ good.price }}</span>
+                </van-col>
+                <van-col id="sales" :span="8">
+                    月销量：
+                    <span style="font-size: 1.5rem">{{ good.sales }}</span>
+                </van-col>
+            </van-row>
+            <div id="detail-title">
+                {{ good.title }}
+                <div style="margin-left: 17rem;margin-top: 1rem">
+                    <van-button @click="showShare = true" class="share-button">
+                        <van-icon name="share-o" size="1rem" style="margin-right: 2px"></van-icon>
+                        分享
+                    </van-button>
+                </div>
+            </div>
+            <van-share-sheet
+                v-model:show="showShare"
+                title="立即分享给好友"
+                :options="options"
+                @select="onSelect"
+            />
         </div>
-        <div id="detail-price">
-          <div id="price">
-            价格：&nbsp;<a
-              style="font-size: 1.5em; color: red; font-weight: bold"
-              >¥{{ good.price }}</a
-            >
-          </div>
-          <div id="sales">月销量：{{ good.sales }}</div>
+        <div id="foot">
+            <van-action-bar style="z-index: 2;margin-bottom: -50px;" safe-area-inset-bottom>
+                <van-action-bar-icon icon="cart-o" text="购物车" replace to="/carts"/>
+                <van-action-bar-icon
+                    icon="star-o"
+                    id="addToStar"
+                    text="未收藏"
+                    @click="addStar"
+                />
+                <van-action-bar-icon
+                    icon="star"
+                    id="delToStar"
+                    text="已收藏"
+                    color="#ff5000"
+                    @click="delStar"
+                />
+                <van-action-bar-button
+                    type="warning"
+                    text="加入购物车"
+                    @click="addCart"
+                />
+                <van-action-bar-button
+                    type="danger"
+                    text="立即购买"
+                    @click="onSubmit"
+                />
+            </van-action-bar>
         </div>
-      </div>
     </div>
-    <div id="foot">
-      <van-action-bar>
-        <van-action-bar-icon icon="chat-o" text="客服" color="#ee0a24" />
-        <van-action-bar-icon icon="cart-o" text="购物车" @click="gocarts" />
-        <van-action-bar-icon
-          icon="star-o"
-          id="addToStar"
-          text="未收藏"
-          @click="addStar"
-        />
-        <van-action-bar-icon
-          icon="star"
-          id="delToStar"
-          text="已收藏"
-          color="#ff5000"
-          @click="delStar"
-        />
-        <van-action-bar-button
-          type="warning"
-          text="加入购物车"
-          @click="addCart"
-        />
-        <van-action-bar-button
-          type="danger"
-          text="立即购买"
-          @click="onSubmit"
-        />
-      </van-action-bar>
-    </div>
-  </div>
 </template>
 <script>
-import { useRouter } from "vue-router";
-import { useStore } from "vuex";
-import { Toast } from "vant";
+import {useRouter} from "vue-router";
+import {useStore} from "vuex";
+import {Toast} from "vant";
+import {ref} from "@vue/reactivity";
+
 export default {
-  name: "DetailPage",
+    name: "DetailPage",
+    setup() {
+        //获取路由
+        const router = useRouter();
+        let id = router.currentRoute.value.query.id;
+        //console.log(id);
+        const store = useStore();
+        //获取商品信息
+        let goods = store.state.goods;
+        let good;
+        let loading = false;
+        goods.forEach((element) => {
+            //console.log(element);
+            if (element.id == id) good = element;
+        });
 
-  setup() {
-    //获取路由
-    const router = useRouter();
-    let id = router.currentRoute.value.query.id;
-    //console.log(id);
-    const store = useStore();
-    //获取商品信息
-    let goods = store.state.goods;
-    let good;
-    goods.forEach((element) => {
-      //console.log(element);
-      if (element.id == id) good = element;
-    });
+        //添加到购物车
+        function addCart() {
+            let beginAdd = store.state.shoppingCarts.length;
+            store.commit("addToCarts", id);
+            let afterAdd = store.state.shoppingCarts.length;
+            if (beginAdd < afterAdd) {
+                Toast("添加成功");
+            } else {
+                Toast("已在购物车中");
+            }
+        }
 
-    //添加到购物车
-    function addCart() {
-      var beginadd = store.state.shoppingCarts.length;
-      store.commit("addToCarts", id);
-      var afteradd = store.state.shoppingCarts.length;
-      if (beginadd < afteradd) {
-        Toast("添加成功");
-      } else {
-        Toast("已在购物车中");
-      }
-    }
-    //添加到收藏页
-    function addStar() {
-      store.commit("addToStars", id);
-      let addstar = document.getElementById("addToStar");
-      let delstar = document.getElementById("delToStar");
-      delstar.style.display = "flex";
-      addstar.style.display = "none";
-    }
-    //从收藏页中删除
-    function delStar() {
-      store.commit("delToStars", id);
-      let addstar = document.getElementById("addToStar");
-      let delstar = document.getElementById("delToStar");
-      delstar.style.display = "none";
-      addstar.style.display = "flex";
-    }
+        //添加到收藏页
+        function addStar() {
+            store.commit("addToStars", id);
+            let addStar = document.getElementById("addToStar");
+            let delStar = document.getElementById("delToStar");
+            delStar.style.display = "flex";
+            addStar.style.display = "none";
+            Toast("收藏");
+        }
 
-    function onSubmit() {
-      Toast("购买成功");
-      console.log(1);
-      //store.commit('onSubmit',choose);
-    }
+        //从收藏页中删除
+        function delStar() {
+            store.commit("delToStars", id);
+            let addStar = document.getElementById("addToStar");
+            let delStar = document.getElementById("delToStar");
+            delStar.style.display = "none";
+            addStar.style.display = "flex";
+            Toast("取消收藏");
+        }
 
-    const themeVars = {};
-    return {
-      addCart,
-      addStar,
-      delStar,
-      onSubmit,
-      good,
-      themeVars,
-    };
-  },
-  mounted: function () {
-    const router = useRouter();
-    let id = router.currentRoute.value.query.id;
-    //console.log(id);
-    const store = useStore();
-    //获取收藏栏信息
-    let collections = store.state.collections;
-    let iffind = 0;
-    let addstar = document.getElementById("addToStar");
-    let delstar = document.getElementById("delToStar");
-    collections.forEach((element) => {
-      if (element == id) {
-        delstar.style.display = "flex";
-        addstar.style.display = "none";
-        iffind = 1;
-      }
-    });
-    if (iffind == 0) {
-      delstar.style.display = "none";
-      addstar.style.display = "flex";
-    }
-    //console.log(good);
-  },
-  methods: {
-    home() {
-      this.$router.push({ name: "home" });
+        // 立即购买
+        function onSubmit() {
+            Toast("购买成功");
+            // console.log(1);
+            //store.commit('onSubmit',choose);
+        }
+
+        // 分享页面
+        const showShare = ref(false);
+        const options = [
+            [
+                {name: '微信', icon: 'wechat'},
+                {name: '朋友圈', icon: 'wechat-moments'},
+                {name: '微博', icon: 'weibo'},
+                {name: 'QQ', icon: 'qq'},
+            ],
+            [
+                {name: '复制链接', icon: 'link'},
+                {name: '分享海报', icon: 'poster'},
+                {name: '二维码', icon: 'qrcode'},
+                {name: '小程序码', icon: 'weapp-qrcode'},
+            ],
+        ];
+        const onSelect = (option) => {
+            Toast(option.name);
+            showShare.value = false;
+        };
+        // 分享页面结束
+        const themeVars = {};
+        return {
+            addCart,
+            addStar,
+            delStar,
+            onSubmit,
+            good,
+            themeVars,
+            options,
+            showShare,
+            onSelect,
+            loading
+        };
     },
-    gocarts() {
-      this.$router.push({ name: "Carts" });
-    },
-  },
+    mounted: function () {
+        const router = useRouter();
+        let id = router.currentRoute.value.query.id;
+        //console.log(id);
+        const store = useStore();
+        //获取收藏栏信息
+        let collections = store.state.collections;
+        store.state.showBottomMenu = false;
+        let ifFind = 0;
+        let addStar = document.getElementById("addToStar");
+        let delStar = document.getElementById("delToStar");
+        collections.forEach((element) => {
+            if (element == id) {
+                delStar.style.display = "flex";
+                addStar.style.display = "none";
+                ifFind = 1;
+            }
+        });
+        if (ifFind == 0) {
+            delStar.style.display = "none";
+            addStar.style.display = "flex";
+        }
+        //console.log(good);
+    }
 };
 </script>
 <style scope>
-#container {
-  display: block;
-  flex-direction: column;
-}
-#detail {
-  display: block;
-
-  align-items: center;
-}
-#detail-right {
-  display: block;
+.container {
+    background-color: whitesmoke;
+    position: absolute;
+    margin: 0;
+    padding: 0 0 -50px 0;
+    height: 85%;
+    width: 100%;
 }
 
-img {
-  width: 100%;
-  height: 300px;
+.van-image {
+    margin-top: -1rem;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    object-fit: cover;
 }
+
+.share-button {
+    border: none;
+    font-weight: normal;
+    display: inline;
+    height: 1rem;
+    color: darkgray;
+}
+
 .van-action-bar {
-  bottom: 50px;
+    bottom: 50px;
 }
 
 #addToStar {
-  display: none;
+    display: none;
 }
-#goHome {
-  display: flex;
-  float: left;
-  width: 100%;
-  background-color: blue;
-}
+
 #detail-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 1vh;
-  margin-bottom: 2vh;
+    font-family: 微软雅黑, Helvetica, serif;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 1rem;
+    text-align: left;
+    padding: 1rem;
+    margin: 0.6rem;
 }
+
 #detail-price {
-  height: 8vh;
-  background-color: blue;
-  width: 100%;
-  display: block;
-}
-#price {
-  color: white;
-  float: left;
-  display: block;
-  text-align: center;
-  padding-top: 2vh;
-  padding-left: 3vh;
-}
-#sales {
-  color: white;
-  float: right;
-  padding-top: 2vh;
-  padding-right: 3vh;
+    height: 5vh;
+    padding-top: 2.5vh;
+    background-color: coral;
+    color: white;
+    margin-top: -4px;
+    padding-bottom: 5px;
 }
 </style>

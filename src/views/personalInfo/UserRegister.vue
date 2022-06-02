@@ -3,9 +3,7 @@
         <div class="icon-back" @click="tologin">
             <van-icon size="25" name="arrow-left"/>
         </div>
-        <div>
-            <p>注册！！！</p>
-        </div>
+        <div class="title">用户注册</div>
         <van-form>
             <van-cell-group>
                 <van-field
@@ -33,26 +31,13 @@
                     placeholder="请再次输入密码"
                 />
             </van-cell-group>
-            <van-field
-                readonly
-                clickable
-                name="picker"
-                :value="value"
-                label="选择地区"
-                placeholder="点击选择地区"
-                @click="showPicker = true"
-            />
-            <van-popup v-model="showPicker" position="bottom">
-                <van-picker
-                    show-toolbar
-                    :columns="columns"
-                    @confirm="onConfirm"
-                    @cancel="showPicker = false"
-                />
-            </van-popup>
         </van-form>
         <div style="margin:16px">
-            <van-button round block type="info" native-type="submit" @click="onsubmit">注册</van-button>
+            <van-button style="width: 80%;" type="primary" native-type="submit" @click="onsubmit">注册</van-button>
+        </div>
+        <div style="text-align: left; margin-left: 2rem;margin-top: 0.5rem;color: gray; font-size: 0.6rem;"
+             @click="$router.push('/login')">
+            已有账号，去登录
         </div>
     </div>
 </template>
@@ -107,5 +92,13 @@ export default {
     position: absolute;
     left: 2px;
     top: 15px;
+}
+
+.title {
+    text-align: left;
+    font-family: 微软雅黑;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 1rem 0 2rem 1rem;
 }
 </style>
