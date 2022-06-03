@@ -2,7 +2,7 @@
     <div class="stars">
         <div v-if="stars.length==0" class="noGood">
             <div style="height: 3rem;">收藏空空的，快去添加商品吧</div>
-            <van-button type="primary" @click="toHome">去添加商品</van-button>
+            <van-button type="primary" @click="gotoHome">去添加商品</van-button>
         </div>
         <van-grid :column-num="2">
             <van-grid-item v-for="s in stars" :key="s.id" class="item">
