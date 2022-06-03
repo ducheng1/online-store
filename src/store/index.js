@@ -1,4 +1,4 @@
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
 
 export default createStore({
     state: {
@@ -9,35 +9,66 @@ export default createStore({
                 url: require("/public/goods/1.jpeg"),
                 title: "家用刷牙杯/漱口杯",
                 price: 17.9,
-                sales: 205
+                sales: 205,
+                introduce: [
+                    require("/public/introduce/1/1.jpg"),
+                    require("/public/introduce/1/2.jpg")
+                ],
+
             },
             {
                 id: 2,
                 url: require("/public/goods/2.jpeg"),
                 title: "RIO/锐澳微醺330ml*3瓶",
                 price: 36,
-                sales: 189
+                sales: 189,
+                introduce: [
+                    require("/public/introduce/2/1.jpg"),
+                    require("/public/introduce/2/2.jpg"),
+                    require("/public/introduce/2/3.jpg"),
+                ],
             },
             {
                 id: 3,
                 url: require("/public/goods/3.jpeg"),
                 title: "楠竹书架简易客厅多层收纳",
                 price: 33.9,
-                sales: 99
+                sales: 99,
+                introduce: [
+                    require("/public/introduce/3/1.jpg"),
+                    require("/public/introduce/3/2.jpg"),
+                    require("/public/introduce/3/3.jpg"),
+                    require("/public/introduce/3/4.jpg"),
+                    require("/public/introduce/3/5.jpg"),
+                    require("/public/introduce/3/6.jpg"),
+                    require("/public/introduce/3/7.jpg"),
+                ],
             },
             {
                 id: 4,
                 url: require("/public/goods/4.jpeg"),
                 title: "怡泉柠檬汽水苏打汽水",
                 price: 44.8,
-                sales: 125
+                sales: 125,
+                introduce: [
+                    require("/public/introduce/4/1.jpg"),
+                    require("/public/introduce/4/2.jpg"),
+                    require("/public/introduce/4/3.jpg"),
+                    require("/public/introduce/4/4.jpg"),
+                    require("/public/introduce/4/5.jpg"),
+                ],
             },
             {
                 id: 5,
                 url: require("/public/goods/5.jpeg"),
                 title: "寻汝汝窑功夫茶具套装天青色",
                 price: 358,
-                sales: 53
+                sales: 53,
+                introduce: [
+                    require("/public/introduce/5/1.jpg"),
+                    require("/public/introduce/5/2.jpg"),
+                    require("/public/introduce/5/3.jpg"),
+                ],
             },
             {
                 id: 6,
