@@ -10,11 +10,12 @@ export default createStore({
                 title: "家用刷牙杯/漱口杯",
                 price: 17.9,
                 sales: 205,
+                score: 5.0,
                 introduce: [
                     require("/public/introduce/1/1.jpg"),
                     require("/public/introduce/1/2.jpg")
                 ],
-                detailimage:[
+                detailimage: [
                     require("/public/goods/1.jpeg"),
                     require("/public/detail-image/1/1.jpg"),
                     require("/public/detail-image/1/2.jpg"),
@@ -28,12 +29,13 @@ export default createStore({
                 title: "RIO/锐澳微醺330ml*3瓶",
                 price: 36,
                 sales: 189,
+                score: 4.8,
                 introduce: [
                     require("/public/introduce/2/1.jpg"),
                     require("/public/introduce/2/2.jpg"),
                     require("/public/introduce/2/3.jpg"),
                 ],
-                detailimage:[
+                detailimage: [
                     require("/public/goods/2.jpeg"),
                     require("/public/detail-image/2/1.jpg"),
                 ]
@@ -44,6 +46,7 @@ export default createStore({
                 title: "楠竹书架简易客厅多层收纳",
                 price: 33.9,
                 sales: 99,
+                score: 4.9,
                 introduce: [
                     require("/public/introduce/3/1.jpg"),
                     require("/public/introduce/3/2.jpg"),
@@ -53,7 +56,7 @@ export default createStore({
                     require("/public/introduce/3/6.jpg"),
                     require("/public/introduce/3/7.jpg"),
                 ],
-                detailimage:[
+                detailimage: [
                     require("/public/goods/3.jpeg"),
                     require("/public/detail-image/3/1.jpg"),
                 ]
@@ -64,6 +67,7 @@ export default createStore({
                 title: "怡泉柠檬汽水苏打汽水",
                 price: 44.8,
                 sales: 125,
+                score: 4.7,
                 introduce: [
                     require("/public/introduce/4/1.jpg"),
                     require("/public/introduce/4/2.jpg"),
@@ -71,7 +75,7 @@ export default createStore({
                     require("/public/introduce/4/4.jpg"),
                     require("/public/introduce/4/5.jpg"),
                 ],
-                detailimage:[
+                detailimage: [
                     require("/public/goods/4.jpeg"),
                     require("/public/detail-image/4/1.jpg"),
                     require("/public/detail-image/4/2.jpg"),
@@ -83,12 +87,13 @@ export default createStore({
                 title: "寻汝汝窑功夫茶具套装天青色",
                 price: 358,
                 sales: 53,
+                score: 4.8,
                 introduce: [
                     require("/public/introduce/5/1.jpg"),
                     require("/public/introduce/5/2.jpg"),
                     require("/public/introduce/5/3.jpg"),
                 ],
-                detailimage:[
+                detailimage: [
                     require("/public/goods/5.jpeg"),
                 ]
             },
@@ -98,9 +103,10 @@ export default createStore({
                 title: "Royal Leaf - Tiesta Tea",
                 price: 345,
                 sales: 39,
+                score: 4.6,
                 introduce: [
                 ],
-                detailimage:[
+                detailimage: [
                     require("/public/goods/6.jpeg"),
                 ]
             },

@@ -11,7 +11,7 @@
       safe-area-inset-top
     ></van-nav-bar>
     <div id="detail">
-      <van-swipe :autoplay="3000" >
+      <van-swipe :autoplay="3000">
         <van-swipe-item v-for="image in good.detailimage" :key="image">
           <van-image v-bind:src="image" />
         </van-swipe-item>
@@ -39,7 +39,11 @@
           </van-button>
         </div>
       </div>
-
+      <div id="detail-score">
+        宝贝评分：
+        <van-rate v-model="good.score" readonly allow-half />
+        &nbsp; &nbsp;{{good.score}}
+      </div>
       <van-share-sheet
         v-model:show="showShare"
         title="立即分享给好友"
@@ -243,6 +247,16 @@ export default {
 }
 
 #detail-title {
+  font-family: 微软雅黑, Helvetica, serif;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 1rem;
+  text-align: left;
+  padding: 1rem;
+  margin: 0.6rem;
+}
+
+#detail-score {
   font-family: 微软雅黑, Helvetica, serif;
   font-weight: bold;
   background-color: white;
