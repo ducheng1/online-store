@@ -11,7 +11,11 @@
       safe-area-inset-top
     ></van-nav-bar>
     <div id="detail">
-      <van-image v-bind:src="good.url" />
+      <van-swipe :autoplay="3000" >
+        <van-swipe-item v-for="image in good.detailimage" :key="image">
+          <van-image v-bind:src="image" />
+        </van-swipe-item>
+      </van-swipe>
       <van-row id="detail-price">
         <van-col id="price" :span="12">
           价格：¥
@@ -46,7 +50,7 @@
       <li v-bind:key="pic" v-for="pic in good.introduce">
         <van-image id="introduce" v-bind:src="pic" />
       </li>
-      <van-divider style="margin-bottom:60px;">已经到最底端了</van-divider>
+      <van-divider style="margin-bottom: 60px">已经到最底端了</van-divider>
     </div>
     <div id="foot">
       <van-action-bar

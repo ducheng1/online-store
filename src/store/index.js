@@ -14,6 +14,12 @@ export default createStore({
                     require("/public/introduce/1/1.jpg"),
                     require("/public/introduce/1/2.jpg")
                 ],
+                detailimage:[
+                    require("/public/goods/1.jpeg"),
+                    require("/public/detail-image/1/1.jpg"),
+                    require("/public/detail-image/1/2.jpg"),
+                    require("/public/detail-image/1/3.jpg"),
+                ]
 
             },
             {
@@ -27,6 +33,10 @@ export default createStore({
                     require("/public/introduce/2/2.jpg"),
                     require("/public/introduce/2/3.jpg"),
                 ],
+                detailimage:[
+                    require("/public/goods/2.jpeg"),
+                    require("/public/detail-image/2/1.jpg"),
+                ]
             },
             {
                 id: 3,
@@ -43,6 +53,10 @@ export default createStore({
                     require("/public/introduce/3/6.jpg"),
                     require("/public/introduce/3/7.jpg"),
                 ],
+                detailimage:[
+                    require("/public/goods/3.jpeg"),
+                    require("/public/detail-image/3/1.jpg"),
+                ]
             },
             {
                 id: 4,
@@ -57,6 +71,11 @@ export default createStore({
                     require("/public/introduce/4/4.jpg"),
                     require("/public/introduce/4/5.jpg"),
                 ],
+                detailimage:[
+                    require("/public/goods/4.jpeg"),
+                    require("/public/detail-image/4/1.jpg"),
+                    require("/public/detail-image/4/2.jpg"),
+                ]
             },
             {
                 id: 5,
@@ -69,13 +88,21 @@ export default createStore({
                     require("/public/introduce/5/2.jpg"),
                     require("/public/introduce/5/3.jpg"),
                 ],
+                detailimage:[
+                    require("/public/goods/5.jpeg"),
+                ]
             },
             {
                 id: 6,
                 url: require("/public/goods/6.jpeg"),
                 title: "Royal Leaf - Tiesta Tea",
                 price: 345,
-                sales: 39
+                sales: 39,
+                introduce: [
+                ],
+                detailimage:[
+                    require("/public/goods/6.jpeg"),
+                ]
             },
 
         ],
