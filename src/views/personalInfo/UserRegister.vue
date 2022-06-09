@@ -53,7 +53,6 @@ export default {
             password: '',
             password1: '',
             value: '',
-            columns: ["瓯江", "鹿城", "洞头", "滨海"],
             showPicker: false,
         };
     },
@@ -71,17 +70,22 @@ export default {
             } else if (this.password != this.password1) {
                 Toast('两次密码不一致');
             } else {
+                var info = {phone:this.phone,password:this.password};
+                this.$store.commit('register',info);
+                console.log(this.$store.state.user);
                 Toast('注册成功');
                 this.$notify({
                     type: "success",
                     message: "注册成功，返回登录",
                     duration: 3000,
                 });
+
                 setTimeout(() => {
                     sessionStorage.clear("regis");
                     this.$router.go(-1);
                 }, 3000);
             }
+
         }
     },
 };
