@@ -156,8 +156,8 @@ export default createStore({
         },
         /* 购买商品 */
         onSubmit(state, choose) {
-            state.shoppingCarts.forEach(s => {
-                choose.forEach(c => {
+            choose.forEach(c => {
+                state.shoppingCarts.forEach(s => {    
                     if (s == c) {
                         state.shoppingCarts.splice(state.shoppingCarts.indexOf(s), 1)
                     }
