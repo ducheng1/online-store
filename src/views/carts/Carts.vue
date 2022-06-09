@@ -10,6 +10,7 @@
                       :title="g.title"
                       class="goods-card"
                       :thumb="g.url"
+                      @click-thumb="goToDetail(g.id)"
             >
                 <template #footer>
                     <input type="button" class="delbtn" value="从购物车上删除" @click="delGood(g.id)">
@@ -51,6 +52,11 @@ export default {
 
         function toHome() {
             router.push('/')
+        }
+
+        /* 单击购物车上的商品图片跳转到该商品的详情页面 */
+        function goToDetail(id){
+            router.push({path: '/detail', query: {id}})
         }
 
         /* 单击删除按钮不再购买该书 */
@@ -110,7 +116,7 @@ export default {
             return price * 100;
         })
 
-        return {cartsGoods, totalPrice, toHome, delGood, onSubmit, onChange}
+        return {cartsGoods, totalPrice, toHome, delGood, onSubmit, onChange,goToDetail}
     }
 }
 </script>
