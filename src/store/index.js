@@ -114,6 +114,12 @@ export default createStore({
         ],
         shoppingCarts: [],//存放要添加到购物车页的商品的id
         collections: [],//存放要添加到收藏页的商品的id
+        user:[
+            {
+                phone:123456,
+                password:123456
+            }
+        ]
     },
     mutations: {
         /* 添加到购物车方法 */
@@ -163,5 +169,19 @@ export default createStore({
         delToStars(state, goodId) {
             state.collections.splice(state.collections.indexOf(goodId), 1);
         },
+        register(state,info){
+            state.user.push(info);
+        },
+        login(state,info){
+            var jmp = false;
+            state.user.forEach((cur) => {
+                if(jmp){
+                    return;
+                }
+                if(cur.phone == info.phone && cur.password == info.password){
+                    state.login = true;
+                }
+            })
+        }
     }
 })

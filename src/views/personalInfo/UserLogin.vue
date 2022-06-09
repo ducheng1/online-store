@@ -64,8 +64,9 @@ export default {
     },
     methods: {
         onSubmit() {
-            if (this.username == "123456" && this.password == "123456") {
-                this.$store.commit('loginSuccess');
+            this.$store.commit('login',{phone:this.username,password:this.password});
+            if (this.$store.state.login) {
+                // this.$store.commit('loginSuccess');
                 this.loginSuccess();
             } else if (this.username == "" && this.password == "") {
                 Toast('请输入账号或密码');
@@ -78,7 +79,7 @@ export default {
         }, checkLogin() {
             this.login = this.$store.state.login;
         }, loginSuccess() {
-            Toast.success('我是杜晓斌，是兄弟就来和我一起购物');
+            Toast.success('登录成功');
             this.$router.push('/');
 
         }, cancelLogin() {
