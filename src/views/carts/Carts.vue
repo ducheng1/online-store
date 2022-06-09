@@ -76,8 +76,8 @@ export default {
         function onSubmit() {
             if (totalPrice.value != 0) {
                 store.commit("onSubmit", choose);
-                cartsGoods.forEach(good => {
-                    choose.forEach(c => {
+                choose.forEach(c => {     
+                    cartsGoods.forEach(good => {
                         if (good.id === c) {
                             cartsGoods.splice(cartsGoods.indexOf(good), 1)
                         }
