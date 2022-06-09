@@ -64,7 +64,12 @@ export default {
         /* 删除收藏页的商品 */
         function delFromStars(goodId) {
             store.commit("delFromStars", goodId);
-            stars.splice(stars.indexOf(goodId), 1);
+            stars.forEach(s => {
+                if(s.id==goodId){
+                    stars.splice(stars.indexOf(s), 1);
+                    return;
+                }
+            });        
             Toast('删除成功');
         }
 
