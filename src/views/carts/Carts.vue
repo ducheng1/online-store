@@ -85,7 +85,6 @@ export default {
                 });
                 choose.splice(0);
                 Toast('购买成功');
-                //store.commit('onSubmit',choose);
             } else
                 Toast('未选择或未添加商品');
         }
